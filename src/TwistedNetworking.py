@@ -74,7 +74,8 @@ class ServerFactory(protocol.Factory):
 
 def startTwistedFactory():
 
-    settings = json.load(open("Settings.json"))
+    settings_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Settings.json')
+    settings = json.load(open(settings_path))
     server = reactor.listenTCP(settings['Port'], ServerFactory(settings))
     width  = os.get_terminal_size().columns
 

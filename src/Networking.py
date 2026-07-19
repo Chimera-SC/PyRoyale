@@ -15,7 +15,8 @@ class Networking(Thread):
     def __init__(self, args):
         Thread.__init__(self)
 
-        self.settings = json.load(open('Settings.json'))
+        SETTINGS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Settings.json')
+        self.settings = json.load(open(SETTINGS_PATH))
 
         self.address = self.settings["Address"]
         self.port = self.settings["Port"]

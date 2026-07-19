@@ -1,6 +1,7 @@
 __all__ = []
 
 import pkgutil
+import importlib
 import inspect
 
 
@@ -10,12 +11,12 @@ Little script that load every messages in the directory:
     and every packets class will be callable (e.g: ClientHello() )
 
 '''
-for loader, name, is_pkg in pkgutil.walk_packages(__path__):
-    module = loader.find_module(name).load_module(name)
+for loader, name, is_pkg in pkgutil.walk_packages(__path__, prefix=__name__ + '.'):
+    module = importlib.import_module(name)
 
-    for name, value in inspect.getmembers(module):
-        if name.startswith('__'):
+    for attr_name, value in inspect.getmembers(module):
+        if attr_name.startswith('__'):
             continue
 
-        globals()[name] = value
-        __all__.append(name)
+        globals()[attr_name] = value
+        __all__.append(attr_name)
