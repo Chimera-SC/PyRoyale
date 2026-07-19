@@ -18,7 +18,7 @@ args = parser.parse_args()
 
 init()
 
-print(Fore.YELLOW + '''
+print(Fore.YELLOW + r'''
 
               __________         __________                         .__           
               \______   \ ___.__.\______   \  ____   ___.__._____   |  |    ____  
